@@ -1,9 +1,9 @@
 ---
 author: Brennan Beal
 categories:
-- Theme Features
 - R
-- package
+- economics
+- teaching
 date: "2019-07-02"
 draft: false
 excerpt: 

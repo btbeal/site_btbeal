@@ -1,9 +1,9 @@
 ---
 author: Brennan Beal
 categories:
-- Theme Features
 - R
-- package
+- economics
+- teaching
 date: "2019-07-02"
 draft: false
 excerpt: In healthcare economics, the most option most *likely* to be cost-effective may not be the best choice! Read on to find out why that may be.
