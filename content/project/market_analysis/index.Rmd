@@ -1,0 +1,25 @@
+---
+author: Brennan Beal
+categories:
+- Theme Features
+- R
+- package
+date: "2019-07-02"
+draft: false
+excerpt: If given a lump sum of cash (lottery, inheritance, bonus), what is the best way to invest it? Read on to find out!
+featured: true
+layout: single
+links:
+- icon: newspaper
+  icon_pack: far
+  name: Blog Post
+  url: https://btbeal.github.io/market_analysis/
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/btbeal/market_analysis/blob/main/Index.Rmd
+subtitle: ""
+tags:
+- hugo-site
+title: S&P Market Analysis
+---
