@@ -6,7 +6,7 @@ description: Welcome to my site. Feel free to poke around. If you find something
   
 image_left: true
 images:
-- img/beal.jpg
+- img/markus.png
 show_action_link: true
 show_social_links: true
 subtitle: Data Science. Healthcare Economics. People.
