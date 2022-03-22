@@ -1,0 +1,24 @@
+---
+author: Brennan Beal
+categories:
+- R
+- teaching
+date: "2022-02-01"
+draft: false
+excerpt: A website I created to help early R users understand the basics of R programming while providing ample opportunity for 'real world' practice problems with interesting, sometimes messy, data.
+featured: true
+layout: single
+links:
+- icon: newspaper
+  icon_pack: far
+  name: Courses
+  url: https://zealous-hawking-ce0a3d.netlify.app/
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/btbeal/Intro-To-R
+subtitle: ""
+tags:
+- hugo-site
+title: Intro to R
+---

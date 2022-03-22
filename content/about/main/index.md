@@ -6,9 +6,9 @@ use_featured: false # if false, use most recent by date
 number_categories: 3 # set to zero to exclude
 show_intro: true
 intro: |
-  I'm currently employed at Flatiron Health as a Quantitative Scientist. Though, my path has been fairly non-traditional. Early in my career I had a passion for healthcare and went straight from my undergraduate program to the University of North Carolina, where I would receive my PharmD (Doctor of Pharmacy). I knew soon into that program that I was more fascinated by the ability to affect millions of lives by leveraging "Big Data" than I was with a single life across the counter from me on any given day.
+  I'm currently employed at Flatiron Health as a Quantitative Scientist where I collaborate daily with our engineers and healthcare providers to rethink how we can use our rich oncology data to affect patient lives. My job changes on any given day and ranges from conducting research to automating processes such as quality assessment. Also, very importantly, I lead our Whisky club.
   
-  I went on to pursue a Fellowship at the University of Washington in Healthcare Economics and Outcomes Research, where I received my Masters. Shortly after, I found Flatiron Health. When I'm in the office, I spend my time working with engineers and physicians to rethink how we can use our rich oncology data to change lives. Outside of the office, I love reading, getting outside (biking, hiking, all the things), and enjoy a good craft beer or peaty scotch in any setting.
+  Outside of the office, I really enjoy being around people in any capacity - biking, hiking, craft beer, and chess. But I also enjoy a good book.
   
   Anyways, I'm happy you're here and appreciate you sticking around thus far. Check out some of my side projects and contact me if you see something you like!
 show_outro: true
