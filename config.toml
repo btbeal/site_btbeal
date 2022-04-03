@@ -131,6 +131,11 @@ enableEmoji = true
     title = "Intro to R"
     url = "/collection/"
     weight = 5
+  [[menu.header]]
+    name = "CV"
+    title = "CV"
+    url = "/cv/"
+    weight = 6
     
   # Configure footer  
   [[menu.footer]]
