@@ -1,9 +1,23 @@
 ---
-title: "Parameterizing Reports with Whisker!"
-author: "Brennan T. Beal, PharmD, MS"
-date: "4/9/2022"
-output: html_document
-
+author: Brennan Beal
+categories:
+- R
+- teaching
+- Rmd
+date: "2022-04-10"
+draft: false
+excerpt: In healthcare economics, the most option most *likely* to be cost-effective may not be the best choice! Read on to find out why that may be.
+featured: true
+layout: single
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/btbeal/site_btbeal/tree/main/content/project/whisker_tutorial
+subtitle: ""
+tags:
+- hugo-site
+title: Parameterizing Reports with Whisker!
 ---
 
 
