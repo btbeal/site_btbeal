@@ -6,7 +6,7 @@ categories:
 - Rmd
 date: "2022-04-10"
 draft: false
-excerpt: In healthcare economics, the most option most *likely* to be cost-effective may not be the best choice! Read on to find out why that may be.
+excerpt: Copying and pasting similar reports over and over is inefficient and can lead to coding error. We can use the whisker package to semi-automate this!
 featured: true
 layout: single
 links:
