@@ -3,9 +3,14 @@ title: "Parameterizing Reports with Whisker!"
 author: "Brennan T. Beal, PharmD, MS"
 date: "4/9/2022"
 output: html_document
+
 ---
 
 
+
+## Tl;dr  
+  
+**The whisker package is a super powerful, but incredibly simple package that allows us to edit text files and render them as either `.R` or `.Rmd` files. Using whisker, we can parameterize any type of file we like. Currently, I use this to update configuration files as well as create new report templates. In the blog, I demonstrate how to edit both!**
 
 ## The Business Case  
   
@@ -185,7 +190,70 @@ Now, we can add all these together an overwite our previous threshold file with 
 ```r
 writeLines(c(beginning_text, middle_line,  end_text), con = './threshold_configuration_file.R')
 ```
+  
+## Parameterised RMarkdown files  
+  
+Seeing how to read, edit, and write back lines to a chunk of code should make this part feel familiar, so i won't spend a ton of time. But, since I mentioned that I use this to generate markdown temmplates as well as update config files, I may as well show you both!  
+  
+We already have the toolkit in hand. So, I'll just provide some snapshots. First, let's create our text file that accepts a number of input parameters for whisker:  
+  
+![markdown snapshot](markdown_template.png)  
+  
+The thing to notice here is that we can modify *any* part of the markdown file because **it is just text**. So now, the drill is the same, read it in, and edit it. Let's see:  
+  
 
+```r
+writeLines(whisker.render(template = readLines('./markdown_template.txt'),
+               data = list(
+                 my_title = 'New title!',
+                 echo = TRUE,
+                 first_chunk_header = "Initial Analysis",
+                 favorite_data_set = 'mtcars'
+               )))
+```
+
+```
+## ---
+## title: "New title!"
+## author: "Brennan T. Beal, PharmD, MS"
+## date: "4/10/2022"
+## output: html_document
+## ---
+## 
+## ```{r setup, include=FALSE}
+## knitr::opts_chunk$set(echo = TRUE)
+## ```
+## 
+## ## Initial Analysis
+## 
+## This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## 
+## When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## 
+## ```{r mtcars_analysis}
+## summary(mtcars)
+## ```
+```
+
+So helpful. So now, I can have a base template that I'd like to slightly modify for different use cases, but generally keep the same. Of course, in your workflow you'll want to save this file as a `.Rmd` as so:  
+  
+
+```r
+writeLines(whisker.render(template = readLines('./markdown_template.txt'),
+               data = list(
+                 my_title = 'New title!',
+                 echo = TRUE,
+                 first_chunk_header = "Initial Analysis",
+                 favorite_data_set = 'mtcars'
+               )),
+           con = './new_markdown.Rmd')
+```
+  
+
+For my current job at Flatiron Health, I use this workflow to create new reports in a large reporting architecture. Whisker has made my life a lot easier.
+  
+In the next section, I'll demonstrate how to functionalize all of this and then we'll wrap it up.  
+  
 
 ## Functionalize it!
 
@@ -193,60 +261,38 @@ Since we can do this all manually, the final part to making this speedy is to fu
   
 
 ```r
-update_thresholds <- function(.threshold_name,
-                              .threshold_value,
-                              .file_path,
-                              .path_output,
+update_thresholds <- function(.my_title,
+                              .echo,
+                              .first_chunk_header,
+                              .favorite_data_set,
+                              .output_path,
                               .file_path_template){
   
-  lines <- readLines(.file_path)
-  
-  last_line <- grep(')', lines)
-  
-  # The beginning is everything before the last line:
-  beginning <- lines[1:last_line - 1]
-  
-  # Modify the beginning
-  beginning[last_line-1] <- paste0(beginning[last_line-1], ',')
-  
-  
-  middle <- whisker.render(template = readLines(.file_path_template), 
-                           data = list(threshold_number = .threshold_name,
-                                       threshold_value = .threshold_value))
-  # The end is... the last line:
-  end <- lines[last_line]
-
   # Assemble the pieces:  
-  full_text <- c(beginning, middle, end)
-  
-  writeLines(text = full_text, con = .path_output)
+  writeLines(whisker.render(template = readLines(.file_path_template),
+                            data = list(
+                              my_title = .my_title,
+                              echo = .echo,
+                              first_chunk_header = .first_chunk_header,
+                              favorite_data_set = .favorite_data_set
+                            )),
+             con = .output_path)
   
   # I like to open the file for the user...
-  file.edit(.path_output)
+  file.edit(.output_path)
   
 }
 ```
 
 
-
-Try it out! For the sake of this blog, I'm going to output to a new file path, but you could (and I do) just overwrite my current file since I can always undo anything major with versioning control.  
+Try it out!  
   
-
-```r
-# Our new function!
-update_thresholds(.threshold_name = 'my_new_threshold_again',
-                  .threshold_value = 120,
-                  .file_path = './threshold_configuration_file.R',
-                  .path_output = './new_file.R', # can be same file to overwrite
-                  .file_path_template = './threshold_template.txt')
-```
-
 
 ## In closing  
   
-Knowing how to read in files as text, edit them with a template, and then reopen the edited file has become incredibly important in my day-to-day workflow as my team continues to build out reporting architecture. We're able to use a function similar to this (though a bit more complex), to open and edit `.Rmd` files, `.R` files, and anything else we'd like all with a few text tempaltes and whisker!  
+Knowing how to read in files as text, edit them with a template, and then reopen the edited file has become incredibly important in my day-to-day workflow as my team continues to build out a fairly large reporting architecture. We're able to use a function similar to this (though a bit more complex), to open and edit `.Rmd` files, `.R` files, and anything else we'd like all with a few text templates and whisker!  
   
-Importantly, and for brevity, I didn't cover `.Rmd` files but it works in the exact same way. I could have just as easily used a `.Rmd` file instead of our simplistic list. In fact, I encourage you to try it out!  
+Of course, in this tutorial I only covered a few examples but the possibilities are endless! Create a text template, and use whisker to edit it.
   
 Happy programming,  
 -B
